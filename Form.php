@@ -17,5 +17,15 @@
         <textarea id="message" name="message" placeholder="Enter your message here" required></textarea><br><br>
         <input type="submit" id="submitbtn" name="submitbtn" value="Send message">
 </form>
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['submitbtn'])) {
+    $FullName = htmlspecialchars($_POST['full_name']);
+    $EmailAddress = htmlspecialchars($_POST['email_address']);
+    $Topic = htmlspecialchars($_POST['topic']);
+    $Message = htmlspecialchars($_POST['message']);
+}
+
+?>
 </body>
 </html>
