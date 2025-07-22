@@ -19,18 +19,23 @@
 </form>
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['submitbtn'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['submitbtn'])) { // deeply checks if form was submitted to set the variables with the information you inputted
     $FullName = htmlspecialchars(trim($_POST['full_name']));
     $EmailAddress = htmlspecialchars($_POST['email_address']);
     $Topic = htmlspecialchars($_POST['topic']);
     $Message = htmlspecialchars($_POST['message']);
     
-    echo "<h1>$FullName $EmailAddress $Topic $Message"; // this will output the information you submitted in the form
+    echo "<h1>$FullName $EmailAddress $Topic $Message</h1>"; // this will output the information you submitted in the form
 
     if (empty($FullName)) {
-        echo "Please enter a name";
+        echo "<h2>Please enter a name</h2>";
     } elseif (strlen($Fullname) <= 2) {
-        echo "Please enter a name longer than 2 letters";
+        echo "<h2>Please enter a name longer than 2 letters</h2>";
+    }
+    if (empty($EmailAddress)) {
+        echo "<h2>Please enter an E-mail address</h2>";
+    } elseif (!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
+        echo "<h2>Please enter a valid E-mail address</h2";
     }
 }
 
