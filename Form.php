@@ -25,15 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['sub
     $Topic = htmlspecialchars($_POST['topic']);
     $Message = htmlspecialchars($_POST['message']);
     
- 
-   echo "<h1>$FullName $EmailAddress $Topic $Message</h1>"; // this will output the information you submitted in the form
-
    $SuccessMessage = true;
 
     if (empty($FullName)) { // checks if $FullName is empty
         echo "<h2>Please enter a name</h2>";
         $SuccessMessage = false;
-    } elseif (strlen($Fullname) <= 2) { // checks if the length of the $FullName is less than or equal to 2
+    } elseif (strlen($FullName) <= 2) { // checks if the length of the $FullName is less than or equal to 2
         echo "<h2>Please enter a name longer than 2 letters</h2>";
         $SuccessMessage = false;
     }
@@ -55,6 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['sub
         echo "<h2>Please enter a longer message</h2>";
         $SuccessMessage = false;
     }
+    if ($SuccessMessage) { // should output the message if all the information you put passed all of the tests
+        echo "<h1>Thank you for sending your message</h1>";
+    }
+    echo "<h1>$FullName $EmailAddress $Topic $Message</h1>"; // this will output the information you submitted in the form
 }
 
 ?>
