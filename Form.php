@@ -25,17 +25,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['sub
     $Topic = htmlspecialchars($_POST['topic']);
     $Message = htmlspecialchars($_POST['message']);
     
-    echo "<h1>$FullName $EmailAddress $Topic $Message</h1>"; // this will output the information you submitted in the form
+ 
+   echo "<h1>$FullName $EmailAddress $Topic $Message</h1>"; // this will output the information you submitted in the form
 
-    if (empty($FullName)) {
+   $SuccessMessage = true;
+
+    if (empty($FullName)) { // checks if $FullName is empty
         echo "<h2>Please enter a name</h2>";
-    } elseif (strlen($Fullname) <= 2) {
+        $SuccessMessage = false;
+    } elseif (strlen($Fullname) <= 2) { // checks if the length of the $FullName is less than or equal to 2
         echo "<h2>Please enter a name longer than 2 letters</h2>";
+        $SuccessMessage = false;
     }
-    if (empty($EmailAddress)) {
+    if (empty($EmailAddress)) { // checks if $EmailAddress is empty
         echo "<h2>Please enter an E-mail address</h2>";
-    } elseif (!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
-        echo "<h2>Please enter a valid E-mail address</h2";
+        $SuccessMessage = false;
+    } elseif (!filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) { // checks if $EmailAddress is a valid email address
+        echo "<h2>Please enter a valid E-mail address</h2>";
+        $SuccessMessage = false;
+    }
+    if (empty($Topic)) { // checks if $Topic is empty
+        echo "<h2>Please enter a topic</h2>";
+        $SuccessMessage = false;
+    }
+    if (empty($Message)) { // checks if $Message is empty
+        echo "<h2>Please enter a message</h2>";
+        $SuccessMessage = false;
+    } elseif (strlen($Message) <= 195) { // checks if the length $Message is less than or equal to 195
+        echo "<h2>Please enter a longer message</h2>";
+        $SuccessMessage = false;
     }
 }
 
