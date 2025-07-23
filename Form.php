@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST) && isset($_POST['sub
    $SuccessMessage = true;
 
     if (empty($FullName)) { // checks if $FullName is empty
-        echo "<h2>Please enter a name</h2>"; // while
+        echo "<h2>Please enter a name</h2>";
         $SuccessMessage = false;
     } elseif (strlen($FullName) <= 2) { // checks if the length of the $FullName is less than or equal to 2
         echo "<h2>Please enter a name longer than 2 letters</h2>";
